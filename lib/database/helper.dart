@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:facegraph_test/model/note.dart';
@@ -42,7 +43,7 @@ class Helper {
 
   Future<List<Note>> retrieveNotes() async {
     final Database db = await initDb();
-    final List<Map<String, Object?>> queryResult = await db.query('$tableName');
+    final List<Map<String, Object>> queryResult = await db.query('$tableName');
     return queryResult.map((e) => Note.fromMap(e)).toList();
   }
 
