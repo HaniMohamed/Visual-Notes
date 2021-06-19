@@ -3,30 +3,32 @@ import 'package:facegraph_test/model/note.dart';
 import 'package:flutter/material.dart';
 
 class HomeViewModel extends ChangeNotifier {
-  List<Note>? notes;
+  List<Note> notes;
 
-  Future<List<Note>?> getNotes() async {
+  Future<List<Note>> getNotes() async {
     notes = await Helper().retrieveNotes();
     notifyListeners();
     return notes;
   }
 
   Future<int> insertNote(Note note) async {
-    int? result;
+    int result;
     result = await Helper().insertNote(note);
     await getNotes();
     return result;
   }
 
   Future<int> updateNote(Note note) async {
-    int? result;
+    int result;
     result = await Helper().updateNote(note);
+    await getNotes();
     return result;
   }
 
   Future<int> deleteNote(int id) async {
-    int? result;
+    int result;
     result = await Helper().deleteNote(id);
+    await getNotes();
     return result;
   }
 }
