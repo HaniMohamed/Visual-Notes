@@ -31,12 +31,12 @@ class Helper {
     });
   }
 
-  Future<int> insertNote(List<Note> notes) async {
+  Future<int> insertNote(Note note) async {
     int result = 0;
     final Database db = await initDb();
-    for (var note in notes) {
-      result = await db.insert('$tableName', note.toMap());
-    }
+
+    result = await db.insert('$tableName', note.toMap());
+
     return result;
   }
 
@@ -46,7 +46,7 @@ class Helper {
     return queryResult.map((e) => Note.fromMap(e)).toList();
   }
 
-  Future<int> update(Note note) async {
+  Future<int> updateNote(Note note) async {
     final db = await initDb();
     return db.update('$tableName', note.toMap(),
         where: '$columnId = ?', whereArgs: [note.id]);
