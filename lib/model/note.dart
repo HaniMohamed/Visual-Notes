@@ -5,7 +5,7 @@ class Note {
   String? title;
   String? description;
   DateTime? date;
-  bool? status;
+  int? status;
   Uint8List? picture;
 
   Note(this.id, this.title, this.description, this.date, this.status,
