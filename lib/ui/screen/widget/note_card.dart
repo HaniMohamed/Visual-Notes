@@ -14,6 +14,7 @@ class NoteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String status = note.status == 1 ? "Open" : "Closed";
     return Dismissible(
       direction: DismissDirection.endToStart,
       background: Container(
@@ -31,7 +32,33 @@ class NoteCard extends StatelessWidget {
           child: ListTile(
         contentPadding: EdgeInsets.all(8.0),
         leading: Image.memory(note.picture),
-        title: Text(note.title),
+        title: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              note.title,
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  "${note.date.year}/${note.date.month}/${note.date.day}",
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                ),
+                Padding(padding: EdgeInsets.symmetric(horizontal: 2)),
+                Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "($status)",
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
         subtitle: Text(note.description),
         trailing: IconButton(
             onPressed: () {

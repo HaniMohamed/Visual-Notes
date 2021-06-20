@@ -24,7 +24,7 @@ class _NewNoteState extends State<NewNote> {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   String _radioValue = "Open";
-  int status;
+  int status = 1;
   File file;
   bool isLoading = false;
 

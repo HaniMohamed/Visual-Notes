@@ -14,7 +14,7 @@ class Note {
     id = map["id"];
     title = map["title"];
     description = map["description"];
-    date = map["date"];
+    date = DateTime.parse(map["date"]);
     status = map["status"];
     picture = map["picture"];
   }
@@ -23,7 +23,7 @@ class Note {
         "id": id,
         "title": title,
         "description": description,
-        "date": date,
+        // "date": date,
         "status": status,
         "picture": picture,
       };
