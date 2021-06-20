@@ -24,8 +24,8 @@ class Helper {
           create table $tableName ( 
           $columnId integer primary key autoincrement, 
           $columnTitle text not null,
-          $columnDescription text not null,
-          $columnDate TEXT DEFAULT CURRENT_TIMESTAMP,
+          $columnDescription text NOT NULL,
+          $columnDate DATETIME DEFAULT CURRENT_TIMESTAMP,
           $columnStatus INT not null,
           $columnPicture BLOB not null)
           ''');
