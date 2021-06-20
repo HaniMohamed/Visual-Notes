@@ -87,7 +87,7 @@ class _NewNoteState extends State<NewNote> {
                     InkWell(
                       onTap: () async {
                         var image = await ImagePicker()
-                            .getImage(source: ImageSource.gallery);
+                            .getImage(source: ImageSource.camera);
                         if (image != null) {
                           setState(() {
                             file = File(image.path);
