@@ -10,7 +10,7 @@ A Flutter app stores data locally using sqflite database. It's a simple solution
 
 ## Importnat-Notes:
 - ~~Images saved in database as list of bytes (Unit8List).~~
-   Update: Image stores in ApplicationDirectory and save its path in database because of huge the images takes a huge list of bytes in database and it's a big resource consumption while add or retreiving.
+   Update: Image stores in ApplicationDirectory and save its path in database because of huge mages take a huge list of bytes in database and it's a big resource consumption while adding or retreiving data.
 - Project is build with MVVM design pattern.
 
 ## Getting Started
