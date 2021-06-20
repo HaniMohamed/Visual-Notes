@@ -1,6 +1,6 @@
-# facegraph_test
+# Visual-notes
 
-Flutter app stores data localy using sqflite database.
+A Flutter app stores data locally using sqflite database. It's a simple solution of a test for using sqflite database, image picker and store Specially, Programming and flutter framework generally.
 
 ## 3rd party Packages:
 - sqflite -> used to create and handeling local database.
