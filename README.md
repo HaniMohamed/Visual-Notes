@@ -9,8 +9,9 @@ Flutter app stores data localy using sqflite database.
 - image_picker ->  pick image from camera.
 
 ## Importnat-Notes:
-- Images saved in database as list of bytes (Unit8List).
-- Project build by MVVM design pattern.
+- ~~Images saved in database as list of bytes (Unit8List).~~
+   Update: Image stores in ApplicationDirectory and its path in database because of huge images takes a huge list of bytes in database and it's a big resource consumption 
+- Project is build with MVVM design pattern.
 
 ## Getting Started
 
