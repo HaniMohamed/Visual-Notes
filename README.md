@@ -4,7 +4,7 @@ Flutter app stores data localy using sqflite database.
 
 ## 3rd party Packages used:
 - sqflite -> used to create and handeling local database.
-- path_provider and path -> to save sqflite database file.
+- path_provider and path -> to save sqflite database file and save picked images in application directory.
 - provider -> for State-managment.
 - image_picker ->  pick image from camera.
 
