@@ -1,7 +1,11 @@
+import 'dart:developer';
+
 import 'package:facegraph_test/model/note.dart';
 import 'package:facegraph_test/viewmodel/home_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'new_note.dart';
 
 class NoteCard extends StatelessWidget {
   Note note;
@@ -29,6 +33,22 @@ class NoteCard extends StatelessWidget {
         leading: Image.memory(note.picture),
         title: Text(note.title),
         subtitle: Text(note.description),
+        trailing: IconButton(
+            onPressed: () {
+              showModalBottomSheet(
+                  backgroundColor: Colors.transparent,
+                  context: context,
+                  isDismissible: true,
+                  isScrollControlled: true,
+                  enableDrag: true,
+                  builder: (context) {
+                    return NewNote(
+                      isEditing: true,
+                      note: note,
+                    );
+                  });
+            },
+            icon: Icon(Icons.edit)),
       )),
     );
   }
