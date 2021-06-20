@@ -1,6 +1,16 @@
 # facegraph_test
 
-A new Flutter project.
+Flutter app stores data localy using sqflite database.
+
+## 3rd party Packages used:
+- sqflite -> used to create and handeling local database.
+- path_provider and path -> to save sqflite database file.
+- provider -> for State-managment.
+- image_picker ->  pick image from camera.
+
+## Importnat-Notes:
+- Images saved in database as list of bytes (Unit8List).
+- Project build by MVVM design pattern.
 
 ## Getting Started
 
