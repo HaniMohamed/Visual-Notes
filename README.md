@@ -10,6 +10,7 @@ Flutter app stores data localy using sqflite database.
 
 ## Importnat-Notes:
 - Images saved in database as list of bytes (Unit8List).
+- ~~crossed out~~
 - Project build by MVVM design pattern.
 
 ## Getting Started
