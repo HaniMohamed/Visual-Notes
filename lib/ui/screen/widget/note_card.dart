@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:facegraph_test/model/note.dart';
 import 'package:facegraph_test/viewmodel/home_viewmodel.dart';
@@ -31,7 +32,7 @@ class NoteCard extends StatelessWidget {
       child: Card(
           child: ListTile(
         contentPadding: EdgeInsets.all(8.0),
-        leading: Image.memory(note.picture),
+        leading: Image.file(File.fromUri(Uri.file(note.picture))),
         title: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:facegraph_test/database/helper.dart';
 import 'package:facegraph_test/model/note.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +22,10 @@ class HomeViewModel extends ChangeNotifier {
 
   Future<int> updateNote(Note note) async {
     int result;
-    result = await Helper().updateNote(note);
+    log(note.toMap().toString());
+    result = await Helper().updateNote(note).catchError((e){
+      log("Error in update : ${e.toString()}");
+    });
     await getNotes();
     return result;
   }

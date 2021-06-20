@@ -27,7 +27,7 @@ class Helper {
           $columnDescription text NOT NULL,
           $columnDate DATETIME DEFAULT CURRENT_TIMESTAMP,
           $columnStatus INT not null,
-          $columnPicture BLOB not null)
+          $columnPicture text not null)
           ''');
     });
   }

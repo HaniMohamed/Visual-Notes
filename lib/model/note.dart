@@ -6,9 +6,9 @@ class Note {
   String description;
   DateTime date;
   int status;
-  Uint8List picture;
+  String picture;
 
-  Note(this.title, this.description, this.status, this.picture);
+  Note(this.title, this.description, this.status, this.picture, {this.id, this.date});
 
   Note.fromMap(Map<String, dynamic> map) {
     id = map["id"];
@@ -23,7 +23,7 @@ class Note {
         "id": id,
         "title": title,
         "description": description,
-        // "date": date,
+        "date": date.toString(),
         "status": status,
         "picture": picture,
       };

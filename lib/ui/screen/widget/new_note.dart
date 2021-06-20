@@ -1,11 +1,11 @@
 import 'dart:io';
-import 'dart:math';
 
 import 'package:facegraph_test/model/note.dart';
 import 'package:facegraph_test/viewmodel/home_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
 class NewNote extends StatefulWidget {
@@ -58,6 +58,7 @@ class _NewNoteState extends State<NewNote> {
         }
         titleController.text = widget.note.title;
         descriptionController.text = widget.note.description;
+        file = File.fromUri(Uri.file(widget.note.picture));
       });
     }
   }
@@ -88,10 +89,12 @@ class _NewNoteState extends State<NewNote> {
                       onTap: () async {
                         var image = await ImagePicker()
                             .getImage(source: ImageSource.camera);
+                        Directory appDir =
+                            await getApplicationDocumentsDirectory();
                         if (image != null) {
-                          setState(() {
-                            file = File(image.path);
-                          });
+                          file = await File(image.path).copy(
+                              '${appDir.path}/${image.path.split('/').last}');
+                          setState(() {});
                         }
                       },
                       child: file == null && !widget.isEditing
@@ -116,7 +119,8 @@ class _NewNoteState extends State<NewNote> {
                               height: MediaQuery.of(context).size.height * 0.15,
                               margin: EdgeInsets.all(5),
                               child: file == null
-                                  ? Image.memory(widget.note.picture)
+                                  ? Image.file(File.fromUri(
+                                      Uri.file(widget.note.picture)))
                                   : Image.file(file),
                             ),
                     ),
@@ -222,18 +226,25 @@ class _NewNoteState extends State<NewNote> {
                                 if (_formKey.currentState.validate()) {
                                   debugPrint(file.path);
                                   int result;
-                                  Note note = Note(
-                                      titleController.text,
-                                      descriptionController.text,
-                                      status,
-                                      file.readAsBytesSync());
 
                                   if (widget.isEditing) {
+                                    Note note = Note(
+                                        titleController.text,
+                                        descriptionController.text,
+                                        status,
+                                        file.path,
+                                        id: widget.note.id,
+                                        date: DateTime.now());
                                     result = await Provider.of<HomeViewModel>(
                                             context,
                                             listen: false)
                                         .updateNote(note);
                                   } else {
+                                    Note note = Note(
+                                        titleController.text,
+                                        descriptionController.text,
+                                        status,
+                                        file.path);
                                     result = await Provider.of<HomeViewModel>(
                                             context,
                                             listen: false)
