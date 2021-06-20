@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:facegraph_test/model/note.dart';
+import 'package:facegraph_test/ui/screen/widget/new_note.dart';
 import 'package:facegraph_test/ui/screen/widget/note_card.dart';
 import 'package:facegraph_test/viewmodel/home_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: const Text('Visual notes'),
       ),
@@ -40,20 +42,27 @@ class _HomeScreenState extends State<HomeScreen> {
               child: CircularProgressIndicator(),
             )
           : Consumer<HomeViewModel>(builder: (context, homeModel, child) {
-              return ListView.builder(
-                itemCount: homeModel.notes.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return NoteCard(homeModel.notes[index]);
-                },
-              );
+              return homeModel.notes.length > 0
+                  ? ListView.builder(
+                      itemCount: homeModel.notes.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return NoteCard(homeModel.notes[index]);
+                      },
+                    )
+                  : Center(child: Text("no data available !"));
             }),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () async {
-          ByteData picture = await rootBundle.load('assets/test.jpg');
-          Note note =
-              Note("title", "description", 1, picture.buffer.asUint8List());
-          Provider.of<HomeViewModel>(context, listen: false).insertNote(note);
+          showModalBottomSheet(
+              backgroundColor: Colors.transparent,
+              context: context,
+              isDismissible: true,
+              isScrollControlled: true,
+              enableDrag: true,
+              builder: (context) {
+                return NewNote();
+              });
         },
       ),
     );
