@@ -36,16 +36,12 @@ class NoteCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              note.title,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  "${note.date.year}/${note.date.month}/${note.date.day}",
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                  note.title,
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 Padding(padding: EdgeInsets.symmetric(horizontal: 2)),
                 Container(
@@ -57,9 +53,16 @@ class NoteCard extends StatelessWidget {
                 )
               ],
             ),
+            Padding(
+              padding: EdgeInsets.only(top: 2.0, bottom: 5),
+              child: Text(
+                "${note.date.year}/${note.date.month}/${note.date.day}   ${note.date.hour}:${note.date.minute}",
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+              ),
+            ),
           ],
         ),
-        subtitle: Text(note.description),
+        subtitle: Text(note.description, style: TextStyle(fontSize: 16)),
         trailing: IconButton(
             onPressed: () {
               showModalBottomSheet(
